@@ -1,0 +1,139 @@
+Here’s a concrete guide to how AWS is used in DevOps/SRE roles, tailored for 3.5+ years of experience, covering real-time tasks, CLI commands, use cases, and top interview questions and answers:
+
+✅ Where AWS is Used in DevOps/SRE – Real-Time Use Cases
+Area	Purpose	Real-Time Example	Tools/Commands
+1. EC2 (VMs)	Hosting apps, jobs, agents	Deploy Jenkins, Nginx, monitoring agents	aws ec2 describe-instances, start-instances
+2. S3 (Storage)	Backup, artifact storage, static site	Store logs, Terraform state files, app assets	aws s3 cp, ls, sync, lifecycle policies
+3. IAM	Access management	Role-based access to EC2, S3, Jenkins	aws iam create-role, attach-policy, sts assume-role
+4. CloudWatch	Monitoring, alerting, logs	CPU alerts, Lambda logs, metrics dashboard	Alarms, aws logs tail, metric filters
+5. Lambda	Serverless automation	Auto cleanup old files, resize images	aws lambda invoke, triggers from S3/CloudWatch
+6. VPC	Networking, security	Create secure subnets, NAT gateways	aws ec2 create-vpc, describe-subnets
+7. CloudFormation / Terraform	Infra as Code (IaC)	Deploy entire app stack	IaC pipelines with Git + CI
+8. ELB / ALB	Load balancing web apps	Blue-green deployment setup	aws elbv2 describe-load-balancers
+9. Route53	DNS, health checks	Map domains, failover routing	aws route53 change-resource-record-sets
+10. CodePipeline + CodeDeploy	CI/CD pipeline	Auto-deploy app after code push	Setup via console or YAML
+
+🔧 Common AWS CLI Commands – DevOps/SRE
+bash
+Copy
+Edit
+# EC2 list
+aws ec2 describe-instances
+
+# S3 upload
+aws s3 cp file.txt s3://my-bucket/
+
+# IAM role
+aws iam list-roles
+
+# CloudWatch logs
+aws logs tail /aws/lambda/my-fn --follow
+
+# Create Security Group
+aws ec2 create-security-group --group-name mysg --description "My SG"
+🎯 DevOps/SRE Interview Questions – AWS Focus (with Answers)
+✅ Q1: How do you manage credentials securely in AWS?
+A:
+
+Use IAM roles for services (e.g., EC2 instance roles).
+
+Use Secrets Manager or SSM Parameter Store for storing credentials.
+
+Never hardcode credentials; use aws configure for local dev, and roles in prod.
+
+✅ Q2: How do you monitor your EC2 instance for high memory and CPU?
+A:
+
+Use CloudWatch agent to push memory metrics (default is CPU only).
+
+Create CloudWatch alarms for thresholds (e.g., CPU > 80%).
+
+Use cloudwatch:GetMetricData, custom dashboards, and SNS for alerts.
+
+✅ Q3: How do you implement zero-downtime deployment on AWS?
+A:
+
+Use ALB with target groups for blue-green deployment.
+
+Use CodeDeploy with EC2 or Lambda and set deploymentType: BLUE_GREEN.
+
+Route traffic gradually using weighted routing in Route53.
+
+✅ Q4: What's the difference between Security Groups and NACLs?
+A:
+
+Security Groups = stateful, instance-level firewall.
+
+NACLs = stateless, subnet-level firewall.
+
+SGs are evaluated per-instance; NACLs apply at subnet border.
+
+✅ Q5: How do you automate EC2 backup?
+A:
+
+Use a Lambda function with a CloudWatch Event Rule.
+
+Create snapshots via:
+
+bash
+Copy
+Edit
+aws ec2 create-snapshot --volume-id vol-xxxxx
+Use AWS Backup service for scheduled backups.
+
+✅ Q6: How do you ensure S3 bucket is not public?
+A:
+
+Use Block Public Access settings on the bucket.
+
+Use IAM policy conditions: "aws:PrincipalOrgID" or "aws:SourceVpc".
+
+Use s3:GetBucketPolicyStatus to verify.
+
+✅ Q7: How do you troubleshoot an EC2 instance not accessible via SSH?
+A:
+
+Check SG and NACL rules (port 22).
+
+Ensure key pair is correct.
+
+Use EC2 serial console or SSM Session Manager for root cause.
+
+✅ Q8: How do you handle blue/green deployments using ALB?
+A:
+
+Create two target groups (blue & green).
+
+Register EC2 instances (or containers) to each group.
+
+Use ALB rules or Route53 weights to switch traffic gradually.
+
+✅ Q9: What’s the role of CloudWatch in DevOps/SRE?
+A:
+
+Log aggregation (CloudWatch Logs).
+
+Metrics for CPU, memory, disk, Lambda, etc.
+
+Alerts (SNS integration).
+
+Dashboards for observability.
+
+✅ Q10: What’s the difference between CloudFormation and Terraform?
+Feature	CloudFormation	Terraform
+Language	JSON/YAML	HCL
+Vendor Lock	AWS only	Multi-cloud
+State Mgmt	Managed by AWS	Local or remote state file
+Community Modules	Limited	Huge registry
+Change Preview	Change Sets	terraform plan
+
+📌 DevOps Resume Points – AWS & SRE
+Deployed scalable, monitored EC2-based applications using ALB, ASG, and SSM.
+
+Automated CI/CD using AWS CodePipeline, CodeBuild, and CodeDeploy.
+
+Created IAM roles and policies for fine-grained access control across services.
+
+Implemented log shipping and metrics using CloudWatch agent and dashboards.
+
+Automated daily backups using Lambda + CloudWatch events for S3 and EC2 snapshots.
