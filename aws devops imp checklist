@@ -1,0 +1,140 @@
+Here’s a complete and focused AWS DevOps Engineer Most Important Checklist (2025 Edition) – tailored for a 3.5+ years experienced engineer. It includes core tools, real-time tasks, and what to master first.
+
+✅ AWS DevOps Engineer Checklist
+🔹 1. CI/CD (Jenkins / CodePipeline / GitHub Actions)
+ Jenkins pipelines (Scripted + Declarative)
+
+ AWS CodePipeline + CodeBuild
+
+ Integration with GitHub/Bitbucket/GitLab
+
+ Build & deploy to:
+
+EC2
+
+ECS / Fargate
+
+EKS (Kubernetes)
+
+ Artifact handling – S3, ECR
+
+📘 Hands-On: Create a Jenkins pipeline that builds a Docker image and pushes it to ECR, then deploys it to ECS.
+
+🔹 2. Infrastructure as Code (Terraform / CloudFormation)
+ Terraform – create VPC, EC2, S3, IAM, RDS, EKS
+
+ State management – local & remote (S3 + DynamoDB)
+
+ Terraform Modules
+
+ CloudFormation basics + stacks
+
+📘 Hands-On: Use Terraform to provision an EKS cluster with IAM roles and ALB.
+
+🔹 3. Containerization & Orchestration
+ Dockerfile creation, multi-stage builds
+
+ Push/Pull from AWS ECR
+
+ ECS (Fargate vs EC2 Launch)
+
+ Kubernetes (EKS)
+
+kubectl, eksctl, IAM roles for service accounts
+
+ Helm basics
+
+📘 Hands-On: Deploy a containerized app to EKS using Helm chart.
+
+🔹 4. Configuration Management
+ Ansible – EC2 provisioning, user management, application setup
+
+ SSM Parameter Store / Secrets Manager
+
+ EC2 User Data scripts (Bash/YAML)
+
+📘 Hands-On: Use Ansible to configure EC2 with Nginx and deploy app code.
+
+🔹 5. Monitoring & Logging
+ CloudWatch Logs & Metrics
+
+ Alarms & Dashboards
+
+ CloudTrail for auditing
+
+ AWS X-Ray for tracing
+
+ Prometheus + Grafana on EKS
+
+📘 Hands-On: Set up a CloudWatch alarm to notify via SNS when CPU > 80% on EC2.
+
+🔹 6. Security & IAM
+ IAM users, groups, roles, policies (least privilege)
+
+ EC2, Lambda, EKS IAM roles
+
+ Secrets Manager vs Parameter Store
+
+ KMS for encryption
+
+📘 Hands-On: Create IAM roles for EKS pods with limited S3 access using IRSA.
+
+🔹 7. Networking & VPC
+ VPC, subnets (public/private), route tables
+
+ Internet/NAT Gateways
+
+ Load Balancers (ALB, NLB)
+
+ Security Groups, NACLs
+
+📘 Hands-On: Design VPC with 2 public + 2 private subnets and deploy EC2 and RDS.
+
+🔹 8. Git & GitHub
+ Branching strategy – GitFlow
+
+ Pull requests & approvals
+
+ GitHub Actions (if integrated with AWS)
+
+ GitOps with ArgoCD/Flux (for EKS)
+
+📘 Hands-On: Trigger a pipeline using GitHub Actions → Terraform → AWS.
+
+🔹 9. Storage Services
+ S3 – versioning, lifecycle rules, static website
+
+ EFS – for shared volumes (EKS/ECS)
+
+ EBS – for EC2
+
+ RDS – backup, multi-AZ
+
+ DynamoDB
+
+📘 Hands-On: Automate S3 lifecycle policy and connect EFS to ECS.
+
+🔹 10. Automation & Scripting
+ Shell scripting (Bash)
+
+ Python/Boto3 basics (optional but useful)
+
+ Automate EC2 start/stop, snapshot cleanup, etc.
+
+📘 Hands-On: Write a script to fetch unencrypted EBS volumes and trigger snapshot + encryption.
+
+📌 Optional but Good to Know
+Tool/Service	Why Useful
+AWS Lambda	Event-based automation (e.g., S3 triggers)
+Step Functions	Automate workflows
+AWS Backup	Central backup management
+CodeDeploy	Blue/Green deployments to EC2 or ECS
+GuardDuty + Security Hub	Threat detection & centralized alerts
+AWS Cost Explorer	Monitor & optimize AWS costs
+
+📘 Weekly Learning Plan Example (4 Weeks)
+Week	Focus Area	Tools to Master
+1	Git, Jenkins CI/CD, EC2, S3	Git, Jenkins, AWS CLI, S3
+2	Terraform, VPC, IAM, Ansible	Terraform, IAM, Ansible
+3	Docker, ECR, ECS/EKS	Docker, EKS, Helm
+4	CloudWatch, SNS, CloudTrail, Security
